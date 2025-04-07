@@ -1,0 +1,6 @@
+/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Infra.Data/obj/Debug/net8.0/Integration.Infra.Data.csproj.AssemblyReference.cache
+/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Infra.Data/obj/Debug/net8.0/Integration.Infra.Data.GeneratedMSBuildEditorConfig.editorconfig
+/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Infra.Data/obj/Debug/net8.0/Integration.Infra.Data.AssemblyInfoInputs.cache
+/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Infra.Data/obj/Debug/net8.0/Integration.Infra.Data.AssemblyInfo.cs
+/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Infra.Data/obj/Debug/net8.0/Integration.Infra.Data.csproj.CoreCompileInputs.cache
+/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Infra.Data/obj/Debug/net8.0/Integration.Infra.Data.sourcelink.json

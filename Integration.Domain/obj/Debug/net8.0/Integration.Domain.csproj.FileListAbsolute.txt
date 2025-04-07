@@ -1,0 +1,6 @@
+/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Domain/obj/Debug/net8.0/Integration.Domain.csproj.AssemblyReference.cache
+/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Domain/obj/Debug/net8.0/Integration.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Domain/obj/Debug/net8.0/Integration.Domain.AssemblyInfoInputs.cache
+/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Domain/obj/Debug/net8.0/Integration.Domain.AssemblyInfo.cs
+/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Domain/obj/Debug/net8.0/Integration.Domain.csproj.CoreCompileInputs.cache
+/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Domain/obj/Debug/net8.0/Integration.Domain.sourcelink.json
