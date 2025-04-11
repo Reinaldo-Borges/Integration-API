@@ -1,7 +1,6 @@
-﻿using System;
-namespace Integration.Domain.Enum
+﻿namespace Integration.Domain.Enum
 {
-	public enum TypeStudentEnum
+    public enum TypeStudentEnum
 	{
         None = 0,        
         Basic = 1,
@@ -9,4 +8,3 @@ namespace Integration.Domain.Enum
         Premium = 3
     }
 }
-

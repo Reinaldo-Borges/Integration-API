@@ -13,7 +13,7 @@ namespace Integration.Domain.Validator
 				.NotEmpty().WithMessage("The property Email can't be void")
 				.EmailAddress().WithMessage("Invalid e-mail.");
 			RuleFor(student => student.UserId)
-				.Equal(Guid.Empty).WithMessage("The property UserId can't be empty.");
+				.NotEqual(Guid.Empty).WithMessage("The property UserId can't be empty.");
 		}
 		
 	}

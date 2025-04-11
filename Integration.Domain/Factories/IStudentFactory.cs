@@ -5,6 +5,6 @@ namespace Integration.Domain.Factories
 {
     public interface IStudentFactory
 	{
-        IStudent Builder(IStudent student);
+        Student Builder(IStudent student);
 	}
 }

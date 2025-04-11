@@ -1,11 +1,11 @@
-﻿using System.Text;
-using Integration.API.Model;
+﻿using Integration.API.Model;
 using Integration.Infra.Data.Infra.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Integration.API.Extensions
 {
@@ -13,17 +13,19 @@ namespace Integration.API.Extensions
 	{
         public static IServiceCollection BuildIdentityContext(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<IdentityDbContext>(option =>
+            //var migrationAssembly = typeof(Program).GetType().Assembly.GetName().Name;
+            services.AddDbContext<IdentityContext>(option =>
             {
                 option.UseSqlServer(configuration.GetConnectionString("SqlConnection"));
+                   // sql => sql.MigrationsAssembly(migrationAssembly));
 
             });
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityContext>()
                 .AddDefaultTokenProviders();
-
-            //JWT
+            
+            
             var jwtSettingsSection = configuration.GetSection("JwtSettings");
             services.Configure<JwtSettings>(jwtSettingsSection);
 

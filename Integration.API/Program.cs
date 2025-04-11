@@ -1,6 +1,6 @@
-﻿using FluentValidation.AspNetCore;
-using Integration.API.Extensions;
-using Integration.Domain.Validator;
+﻿using Integration.API.Extensions;
+using Integration.API.Setup;
+using Newtonsoft.Json.Converters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,9 +11,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<StudentValidator>());
-
+builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
+builder.Services.AddFluentValidations();
+builder.Services.ResolveDependencies(builder.Configuration);
 builder.Services.BuildIdentityContext(builder.Configuration);
+
+builder.Services.AddMvc(option => option.EnableEndpointRouting = false)
+                .AddNewtonsoftJson(opt => {
+                    opt.SerializerSettings.Converters.Add(new StringEnumConverter());
+                });
 
 var app = builder.Build();
 

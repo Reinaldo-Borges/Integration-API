@@ -5,7 +5,9 @@ namespace Integration.Domain.Entities
 {
     public abstract class Student : Entity
 	{
-        public abstract TypeStudentEnum StudentType { get; }
+        public abstract TypeStudentEnum TypeStudent { get; }
+        public virtual Guid CourseId { get;  }
+        public virtual Guid SecurityKey { get; }
         public string Name { get; private set; }
         public string Document { get; private set; }
         public string Email { get; private set; }
@@ -24,8 +26,7 @@ namespace Integration.Domain.Entities
         }
 
         public virtual void Activate() => StatusEntity = StatusEntityEnum.Active;
-        public virtual void Inactivate() => StatusEntity = StatusEntityEnum.Inactive;
-       
+        public virtual void Inactivate() => StatusEntity = StatusEntityEnum.Inactive;       
         public Student SetDocument(string document)
         {
             Document = document;
@@ -41,12 +42,11 @@ namespace Integration.Domain.Entities
             Birthday = birthday;
             return this;
         }
-
         public Student SetCountry(string country)
         {
             Country = country;
             return this;
-        }        
+        }
+
     }
 }
-
