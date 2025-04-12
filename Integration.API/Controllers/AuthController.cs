@@ -1,3 +1,4 @@
+using Integration.API.Extensions;
 using Integration.API.Model;
 using Integration.API.Model.Request;
 using Integration.API.Model.ViewModel;
@@ -83,5 +84,34 @@ namespace Integration.API.Controllers
 
             return NotFound("Invalid User/Password");
         }
+
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [HttpPost("access/external")]
+        public async Task<ActionResult<UserViewModel>> ExternalLogin(ExternalUserRequest externalUser)
+        {
+            if (!externalUser.Email.IsValidEmail()) return BadRequest("Invalid e-mail");
+
+            var userFind = await _userManager.FindByEmailAsync(externalUser.Email);
+
+            if (userFind is null)
+            {
+                var user = new IdentityUser
+                {
+                    UserName = externalUser.Email,
+                    Email = externalUser.Email,
+                    EmailConfirmed = true
+                };
+                await _userManager.CreateAsync(user);
+                var userCreated = await _userManager.FindByEmailAsync(user.Email);
+                await _userManager.AddToRoleAsync(userCreated, "Basic");
+            }
+
+            var token = await _userHandlerService.GetJwt(_userManager, _jwtSettings, externalUser.Email);
+            var userResponse = await _userHandlerService.BuildUser(_service, _jwtSettings, externalUser.Email, token);
+            return Ok(userResponse);
+        }
+
+
     }
 }

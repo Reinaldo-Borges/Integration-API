@@ -3,7 +3,6 @@ using Integration.API.Extensions;
 using Integration.API.Model.Request;
 using Integration.API.Model.ViewModel;
 using Integration.API.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Integration.API.Controllers
@@ -24,7 +23,6 @@ namespace Integration.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]     
         [HttpPost("new")]
-        [AllowAnonymous]
         public async Task<ActionResult<StudentRequest>> Create(StudentRequest student)
         {
             if (!this.ModelState.IsValid) return BadRequest(error: new { error = "Payload invalid" });
@@ -37,7 +35,6 @@ namespace Integration.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPatch("edit")]
-        [AllowAnonymous]
         public async Task<ActionResult<StudentRequest>> Update(StudentRequest student)
         {
             if (!this.ModelState.IsValid) return BadRequest(error: new { error = "Payload invalid" });
@@ -51,7 +48,6 @@ namespace Integration.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{email}/email")]
-        [AllowAnonymous]
         public async Task<ActionResult<StudentViewModel>> GetByEmail(string email)
         {
             if (!email.IsValidEmail()) return BadRequest(error: new { error = "E-mail invalid" });
@@ -69,7 +65,6 @@ namespace Integration.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{id}")]
-        [AllowAnonymous]
         public async Task<ActionResult<StudentViewModel>> GetById(Guid id)
         {
             if (!id.IsGuidNotEmpty()) return BadRequest(error: new { error = "Id is Guid.Empty" });
@@ -87,7 +82,6 @@ namespace Integration.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("user/{userId}")]
-        [AllowAnonymous]
         public async Task<ActionResult<StudentViewModel>> GetByUserId(Guid userId)
         {
             if (!userId.IsGuidNotEmpty()) return BadRequest(error: new { error = "Id is Guid.Empty" });
