@@ -3,6 +3,7 @@ using Integration.API.Model;
 using Integration.API.Model.Request;
 using Integration.API.Model.ViewModel;
 using Integration.API.Services;
+using Integration.Domain.Enum;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -16,20 +17,17 @@ namespace Integration.API.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly JwtSettings _jwtSettings;
-        private readonly IStudentService _service;      
-        private IUserHandlerService _userHandlerService;
+        private readonly IStudentService _service;
 
         public AuthController(SignInManager<IdentityUser> signInManager,
                                             UserManager<IdentityUser> userManager,
                                             IOptions<JwtSettings> jwtSettings,
-                                            IStudentService service,
-                                            IUserHandlerService userHandlerService)
+                                            IStudentService service)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _jwtSettings = jwtSettings.Value;
             _service = service;
-            _userHandlerService = userHandlerService;
         }
 
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -73,8 +71,9 @@ namespace Integration.API.Controllers
 
             if (result.Succeeded)
             {
-                var token = await _userHandlerService.GetJwt(_userManager, _jwtSettings, loginUser.Email);
-                var userResponse = await _userHandlerService.BuildUser(_service, _jwtSettings, loginUser.Email, token);
+                var userHandler = new UserTokenHandler();
+                var token = await userHandler.GetJwt(_userManager, _jwtSettings, loginUser.Email);
+                var userResponse = await userHandler.BuildUser(_service, _jwtSettings, loginUser.Email, token);
                 return Ok(userResponse);
             }
             if (result.IsLockedOut)
@@ -86,7 +85,7 @@ namespace Integration.API.Controllers
         }
 
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(UserViewModel), StatusCodes.Status200OK)]
         [HttpPost("access/external")]
         public async Task<ActionResult<UserViewModel>> ExternalLogin(ExternalUserRequest externalUser)
         {
@@ -104,14 +103,13 @@ namespace Integration.API.Controllers
                 };
                 await _userManager.CreateAsync(user);
                 var userCreated = await _userManager.FindByEmailAsync(user.Email);
-                await _userManager.AddToRoleAsync(userCreated, "Basic");
+                await _userManager.AddToRoleAsync(userCreated, TypeStudentEnum.Basic.ToString());
             }
 
-            var token = await _userHandlerService.GetJwt(_userManager, _jwtSettings, externalUser.Email);
-            var userResponse = await _userHandlerService.BuildUser(_service, _jwtSettings, externalUser.Email, token);
+            var userHandler = new UserTokenHandler();
+            var token = await userHandler.GetJwt(_userManager, _jwtSettings, externalUser.Email);
+            var userResponse = await userHandler.BuildUser(_service, _jwtSettings, externalUser.Email, token);
             return Ok(userResponse);
         }
-
-
     }
 }

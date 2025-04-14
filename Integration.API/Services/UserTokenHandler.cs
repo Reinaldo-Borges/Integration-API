@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Integration.API.Services
 {
-    public class UserHandlerService : IUserHandlerService
+    public class UserTokenHandler
 	{
         public async Task<UserViewModel> BuildUser(IStudentService service, JwtSettings jwtSettings, string email, string token)
         {            

@@ -1,7 +1,6 @@
 ﻿using System.Data;
 using Integration.API.Model;
 using Integration.API.Services;
-using Integration.Domain.Entities;
 using Integration.Domain.Factories;
 using Integration.Domain.Interfaces;
 using Integration.Infra.Data.Infra.UnitOfWork;
@@ -16,8 +15,6 @@ namespace Integration.API.Extensions
             services.AddScoped<JwtSettings>();
 
             services.AddScoped<IStudentService, StudentService>();
-
-            services.AddScoped<IUserHandlerService, UserHandlerService>();   
 
             services.AddScoped<IStudentFactory, StudentFactory>();
 
