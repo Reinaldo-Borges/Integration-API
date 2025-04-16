@@ -16,7 +16,7 @@ namespace Integration.Infra.Data.Data
 		}
 
         public async Task Add(Student student)
-        {           
+        {                
             var sql = @"INSERT INTO Student
                                 (TypeStudentId, Id, Name, Email, Document,
                                 Cellphone, Country, Birthday, UserId, CourseId, SecurityKey)
@@ -39,11 +39,11 @@ namespace Integration.Infra.Data.Data
                 SecurityKey = student.SecurityKey              
             };
 
-            await _connection.ExecuteAsync(sql, parametros, _transaction);
+            await _connection.ExecuteAsync(sql, parametros, _transaction);            
         }
 
         public async Task Update(Student student)
-        {            
+        {
             var sql = @"UPDATE Student
                             SET   Name = @Name, Document = @Document, Cellphone = @Cellphone, Country = @Country, Birthday = @Birthday
                         WHERE Id = @Id";
@@ -58,7 +58,7 @@ namespace Integration.Infra.Data.Data
                 Birthday = student.Birthday              
             };
 
-            await _connection.ExecuteAsync(sql, parametros, _transaction);
+            await _connection.ExecuteAsync(sql, parametros, _transaction);   
         }
     }
 }

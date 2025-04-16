@@ -36,7 +36,7 @@ namespace Integration.UnitTest
                         { Secret = "GRANDESCOISASFEZOSENHORPORNOSPORISSOSOMOSSALVOS",
                           ExpriresInHours = 10, Issuer = "MySystem", ValidIn = @"https://localhost" });
 
-            _studentServiceMock = new Mock<IStudentService>();
+            _studentServiceMock = new Mock<IStudentService>(); 
 
             _authController = new AuthController(_signInManagerMok.Object, _userManagerMock.Object, _jwtSettings, _studentServiceMock.Object);
         }
@@ -71,7 +71,7 @@ namespace Integration.UnitTest
 
             _userManagerMock.Setup(s => s.AddToRoleAsync(It.IsAny<IdentityUser>(), It.IsAny<string>()));
 
-            _signInManagerMok.Setup(s => s.SignInAsync(user, false, null));
+            _signInManagerMok.Setup(s => s.SignInAsync(user, false, null));          
 
             var actionResult = _authController.Register(registerRequest);
 

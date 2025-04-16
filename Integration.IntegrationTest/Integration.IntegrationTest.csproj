@@ -7,6 +7,7 @@
 
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,10 +15,36 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="xunit" Version="2.5.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+    <PackageReference Include="FluentAssertions" Version="8.2.0" />
+    <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="FastMember.NetCore" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.14" />
+    <PackageReference Include="Respawn" Version="6.2.1" />
+    <PackageReference Include="Testcontainers" Version="4.4.0" />
+    <PackageReference Include="Testcontainers.MsSql" Version="4.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Setup\" />
+    <None Remove="Script\" />
+    <None Remove="Script\initdb.sql" />
+    <None Remove="Builder\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Setup\" />
+    <Folder Include="Script\" />
+    <Folder Include="Builder\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Integration.API\Integration.API.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Script\initdb.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>    
+  </ItemGroup>
 </Project>

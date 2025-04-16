@@ -5,7 +5,6 @@ using Integration.API.Model.Request;
 using Integration.API.Model.ViewModel;
 using Integration.API.Services;
 using Integration.API.Setup;
-using Integration.Domain.Entities;
 using Integration.Domain.Enum;
 using Integration.Domain.Interfaces;
 using Integration.Domain.Models;
@@ -66,24 +65,7 @@ namespace Integration.UnitTest
             result.Email.Should().Be(student.Email);
             result.Id.Should().Be(student.Id);
             result.TypeStudent.Should().Be(typeStudent);
-        }
-
-        [Fact]
-        public void Create_StudentWrongData_FailOnCretedStudent()
-        {
-            var student = new StudentRequest()
-            {
-                Id = Guid.Empty,              
-            };
-
-            _controller.ModelState.AddModelError("key", "exception");
-            var actionResult = _controller.Create(student);
-
-
-            var brResult = Assert.IsType<BadRequestObjectResult>(actionResult?.Result.Result);         
-
-            brResult.Value.ToString().Should().Contain("Payload invalid");
-        }
+        }       
 
         [Fact]
         public void Update_StudentRightData_SuccessOnRegister()

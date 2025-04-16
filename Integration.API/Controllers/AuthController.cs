@@ -71,9 +71,9 @@ namespace Integration.API.Controllers
 
             if (result.Succeeded)
             {
-                var userHandler = new UserTokenHandler();
-                var token = await userHandler.GetJwt(_userManager, _jwtSettings, loginUser.Email);
-                var userResponse = await userHandler.BuildUser(_service, _jwtSettings, loginUser.Email, token);
+                var userHandler = new UserTokenHandler(_service, _userManager);
+                var token = await userHandler.GetJwt(_jwtSettings, loginUser.Email);
+                var userResponse = await userHandler.BuildUser(_jwtSettings, loginUser.Email, token);
                 return Ok(userResponse);
             }
             if (result.IsLockedOut)
@@ -106,9 +106,9 @@ namespace Integration.API.Controllers
                 await _userManager.AddToRoleAsync(userCreated, TypeStudentEnum.Basic.ToString());
             }
 
-            var userHandler = new UserTokenHandler();
-            var token = await userHandler.GetJwt(_userManager, _jwtSettings, externalUser.Email);
-            var userResponse = await userHandler.BuildUser(_service, _jwtSettings, externalUser.Email, token);
+            var userHandler = new UserTokenHandler(_service, _userManager);
+            var token = await userHandler.GetJwt(_jwtSettings, externalUser.Email);
+            var userResponse = await userHandler.BuildUser(_jwtSettings, externalUser.Email, token);
             return Ok(userResponse);
         }
     }

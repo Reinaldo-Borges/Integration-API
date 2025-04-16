@@ -4,14 +4,135 @@
     "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.IntegrationTest/Integration.IntegrationTest.csproj": {}
   },
   "projects": {
-    "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.IntegrationTest/Integration.IntegrationTest.csproj": {
+    "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.API/Integration.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.IntegrationTest/Integration.IntegrationTest.csproj",
-        "projectName": "Integration.IntegrationTest",
-        "projectPath": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.IntegrationTest/Integration.IntegrationTest.csproj",
+        "projectUniqueName": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.API/Integration.API.csproj",
+        "projectName": "Integration.API",
+        "projectPath": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.API/Integration.API.csproj",
         "packagesPath": "/Users/reinaldosoaresborges/.nuget/packages/",
-        "outputPath": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.IntegrationTest/obj/",
+        "outputPath": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.API/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/reinaldosoaresborges/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Domain/Integration.Domain.csproj": {
+                "projectPath": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Domain/Integration.Domain.csproj"
+              },
+              "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Infra.Data/Integration.Infra.Data.csproj": {
+                "projectPath": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Infra.Data/Integration.Infra.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.14, )"
+            },
+            "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter": {
+              "target": "Package",
+              "version": "[8.0.11, )"
+            },
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.11, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.14, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[8.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.14, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Domain/Integration.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Domain/Integration.Domain.csproj",
+        "projectName": "Integration.Domain",
+        "projectPath": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Domain/Integration.Domain.csproj",
+        "packagesPath": "/Users/reinaldosoaresborges/.nuget/packages/",
+        "outputPath": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/reinaldosoaresborges/.nuget/NuGet/NuGet.Config"
@@ -38,9 +159,187 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Infra.Data/Integration.Infra.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Infra.Data/Integration.Infra.Data.csproj",
+        "projectName": "Integration.Infra.Data",
+        "projectPath": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Infra.Data/Integration.Infra.Data.csproj",
+        "packagesPath": "/Users/reinaldosoaresborges/.nuget/packages/",
+        "outputPath": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Infra.Data/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/reinaldosoaresborges/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Domain/Integration.Domain.csproj": {
+                "projectPath": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.Domain/Integration.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.66, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.14, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.IntegrationTest/Integration.IntegrationTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.IntegrationTest/Integration.IntegrationTest.csproj",
+        "projectName": "Integration.IntegrationTest",
+        "projectPath": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.IntegrationTest/Integration.IntegrationTest.csproj",
+        "packagesPath": "/Users/reinaldosoaresborges/.nuget/packages/",
+        "outputPath": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.IntegrationTest/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/reinaldosoaresborges/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.API/Integration.API.csproj": {
+                "projectPath": "/Users/reinaldosoaresborges/Projects/Portifolio/Integration/Integration.API/Integration.API.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.66, )"
+            },
+            "FastMember.NetCore": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[8.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Testing": {
+              "target": "Package",
+              "version": "[8.0.14, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.8.0, )"
+            },
+            "Respawn": {
+              "target": "Package",
+              "version": "[6.2.1, )"
+            },
+            "Testcontainers": {
+              "target": "Package",
+              "version": "[4.4.0, )"
+            },
+            "Testcontainers.MsSql": {
+              "target": "Package",
+              "version": "[4.4.0, )"
             },
             "coverlet.collector": {
               "target": "Package",

@@ -11,9 +11,19 @@ namespace Integration.API.Services
 {
     public class UserTokenHandler
 	{
-        public async Task<UserViewModel> BuildUser(IStudentService service, JwtSettings jwtSettings, string email, string token)
+        private readonly IStudentService _service;
+        private readonly UserManager<IdentityUser> _userManager;
+
+
+        public UserTokenHandler(IStudentService service, UserManager<IdentityUser> userManager)
+        {
+            _service = service;
+            _userManager = userManager;
+        }
+
+        public async Task<UserViewModel> BuildUser(JwtSettings jwtSettings, string email, string token)
         {            
-            var student = await service.GetByEmail(email);
+            var student = await _service.GetByEmail(email);
             var tokenInfo = JwtDecoder(token);
             return new UserViewModel
             {
@@ -31,10 +41,10 @@ namespace Integration.API.Services
         }
 
 
-        public async Task<ClaimsIdentity> GetClaims(UserManager<IdentityUser> userManager, string email)
+        public async Task<ClaimsIdentity> GetClaims(string email)
         {
-            var user = await userManager.FindByEmailAsync(email);
-            var role = await userManager.GetRolesAsync(user);
+            var user = await _userManager.FindByEmailAsync(email);
+            var role = await _userManager.GetRolesAsync(user);
 
             var claims = new List<Claim>();
             claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()));
@@ -47,7 +57,7 @@ namespace Integration.API.Services
             return new ClaimsIdentity(claims);
         }
 
-        public async Task<string> GetJwt(UserManager<IdentityUser> userManager, JwtSettings jwtSettings, string email)
+        public async Task<string> GetJwt(JwtSettings jwtSettings, string email)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(jwtSettings.Secret);
@@ -57,27 +67,12 @@ namespace Integration.API.Services
                 Audience = jwtSettings.ValidIn,
                 Expires = DateTime.UtcNow.AddHours(jwtSettings.ExpriresInHours),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256),
-                Subject = await GetClaims(userManager, email)
+                Subject = await GetClaims(email)
             });
 
             var encondedToken = tokenHandler.WriteToken(token);
             return encondedToken;
-        }
-
-        public string GeneratePassword()
-        {
-            var lowerCase = "abcdefghijklmnopqrstuvwxyz";
-            var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            var simble = "@#$&";
-            var number = "0123456789";
-            var random = new Random();
-            var resultLowerCase = new string(Enumerable.Repeat(lowerCase, 3).Select(s => s[random.Next(s.Length)]).ToArray());
-            var resultUpperCase = new string(Enumerable.Repeat(upperCase, 3).Select(s => s[random.Next(s.Length)]).ToArray());
-            var resulSimple = new string(Enumerable.Repeat(simble, 1).Select(s => s[random.Next(s.Length)]).ToArray());
-            var resultNumber = new string(Enumerable.Repeat(number, 2).Select(s => s[random.Next(s.Length)]).ToArray());
-            var list = new List<string>() { resultLowerCase, resulSimple, resultUpperCase, resultNumber };
-            return string.Join("", list);
-        }
+        }       
 
         public TokenInfo JwtDecoder(string token)
         {            
